@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    html, body, button, input, select, textarea {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+  <title>WebSocket</title>
+</head>
+<body>
+  <section class="section has-text-centered">
+    <h1 class="title is-1">WebSocket</h1>
+  </section>
+  <section class="section has-text-centered">
+    <button id="event" class="button is-info">Submit</button>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script>
+    const socket = io('http://localhost:3000')
+
+    document.querySelector('#event').addEventListener('click', () => {
+      socket.emit('greet', 'Greetings to the server')
+    })
+
+    socket.on('greet', (data) => {
+      alert(data)
+    })
+  </script>
+</body>
+</html>
